@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {PostService} from '../post.service';
 import {BlogPost} from '../blog-post';
@@ -9,16 +9,18 @@ import {BlogPost} from '../blog-post';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  posts: BlogPost[] = [];
+  posts: BlogPost[];
 
   constructor(
     private router: Router,
     private postService: PostService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
-    this.postService.getPosts().
-      subscribe(posts => this.posts = posts);
+    this.postService.getPosts().subscribe(posts => {
+      this.posts = posts;
+    });
   }
 
 }

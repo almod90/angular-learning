@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {BlogPost} from './blog-post';
 import {Observable, throwError as observableThrowError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
+
+import {BlogPost} from './blog-post';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class PostService {
   constructor(private http: HttpClient) {
   }
 
-  getPosts() {
+  getPosts(): Observable<BlogPost[]> {
     return this.http
       .get<BlogPost[]>(this.url)
-      .pipe(map(data => data), catchError(this.handleError));
+      .pipe(map(data => data.map(e => new BlogPost(e))), catchError(this.handleError));
   }
 
   private handleError(res: HttpErrorResponse | any) {
