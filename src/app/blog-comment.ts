@@ -1,5 +1,4 @@
 export class BlogComment {
-  user: string;
+  name: string;
   text: string;
-  date: Date;
 }

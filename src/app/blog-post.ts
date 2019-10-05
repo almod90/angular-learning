@@ -1,20 +1,18 @@
 import {BlogComment} from './blog-comment';
+import {Deserializable} from './deserializable';
 
-export class BlogPost {
-  // user: string;
+export class BlogPost implements Deserializable {
+  id: number;
   title: string;
   text: string;
-  // readonly slug: string;
   comments: BlogComment[];
 
-
-  constructor(data) {
-    this.title = data.title;
-    this.text = data.text;
-    this.comments = data.comments;
+  deserialize(input: any): this {
+    Object.assign(this, input);
+    return this;
   }
 
   get slug(): string {
-    return this.title.toLowerCase().split(' ').join('-');
+    return this.id + '-' + this.title.toLowerCase().split(' ').join('-');
   }
 }

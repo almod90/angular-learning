@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-12">
+    <h1 class="text-center my-5">{{ post.title }}</h1>
+    <p>{{ post.text }}</p>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-12">
+    <div class="h4 text-center">
+      Comments
+    </div>
+  </div>
+  <div class="col-12" *ngFor="let c  of post.comments">
+    <p><span class="font-weight-bold">{{ c.name }}:</span> {{ c.text }}</p>
+  </div>
+</div>
